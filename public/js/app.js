@@ -1,7 +1,7 @@
 
-var CONTACT_ID_ATTR_NAME = 'data-contractid';
-var CONTACT_REMOVE_CONFIRM = 'Are you sure?';
-var NO_CONTACTS_TEXT = 'No contacts';
+const CONTACT_ID_ATTR_NAME = 'data-contractid';
+const CONTACT_REMOVE_CONFIRM = 'Are you sure?';
+const NO_CONTACTS_TEXT = 'No contacts';
 
 class ContactBook {
 
@@ -38,7 +38,7 @@ class ContactBook {
     }
 
     initItemTemplate() {
-        var contactListItem = this.contactList.querySelector('li');
+        let contactListItem = this.contactList.querySelector('li');
         this.contactList.removeChild(contactListItem);
         this._contactTemplate = contactListItem;
     }
@@ -77,7 +77,7 @@ class ContactBook {
         if(!contacts.length)
             return this.createNoDataItem();
 
-        var result = document.createDocumentFragment();
+        let result = document.createDocumentFragment();
 
         contacts.forEach(contact => {
             result.appendChild(this.createContact(contact))
@@ -87,14 +87,14 @@ class ContactBook {
     }
 
     createNoDataItem() {
-        var result = document.createElement('li');
+        let result = document.createElement('li');
         result.className = 'contact-list-empty';
         result.textContent = NO_CONTACTS_TEXT;
         return result;
     }
 
     createContact(contact) {
-        var result = this._contactTemplate.cloneNode(true);
+        let result = this._contactTemplate.cloneNode(true);
         result.setAttribute(CONTACT_ID_ATTR_NAME, contact._id);
         result.querySelector('.contact-name').innerText = contact.firstName + ' ' + contact.lastName;
         result.querySelector('.contact-phone').innerText = contact.phone;
@@ -103,7 +103,7 @@ class ContactBook {
     }
 
     showContact(event) {
-        var contactId = event.currentTarget.getAttribute(CONTACT_ID_ATTR_NAME);
+        let contactId = event.currentTarget.getAttribute(CONTACT_ID_ATTR_NAME);
 
         this.store.get(contactId).then(contact => {
             this.setContactDetails(contact);
@@ -117,16 +117,16 @@ class ContactBook {
     }
 
     editContact() {
-        var contactId = this.getContactId();
+        let contactId = this.getContactId();
 
-        this.store.get(this.getContactId()).then(contact => {
+        this.store.get(contactId).then(contact => {
             this.setContactDetails(contact);
             this.toggleContactFormEditing(true);
         });
     }
 
     saveContact() {
-        var contact = this.getContactDetails();
+        let contact = this.getContactDetails();
 
         this.store.save(contact).then(() => {
             this.setContactDetails({});
@@ -139,7 +139,7 @@ class ContactBook {
         if(!window.confirm(CONTACT_REMOVE_CONFIRM))
             return;
 
-        var contactId = this.getContactId();
+        let contactId = this.getContactId();
 
         this.store.remove(contactId).then(() => {
             this.setContactDetails({});
@@ -174,7 +174,7 @@ class ContactBook {
     }
 
     toggleContactFormEditing(isEditing) {
-        var isContactSelected = !this.getContactId();
+        let isContactSelected = !this.getContactId();
 
         this.toggleFade(this.contactDetailsForm, !isEditing && isContactSelected);
 

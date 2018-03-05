@@ -1,6 +1,6 @@
-var CACHE_NAME = 'contact-book-v1';
+let CACHE_NAME = 'contact-book-v1';
 
-var resourcesToCache = [
+let resourcesToCache = [
     '/',
     '/css/style.css',
     '/js/ext/babel.min.js',
