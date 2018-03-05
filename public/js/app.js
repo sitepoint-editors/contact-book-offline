@@ -62,7 +62,7 @@ class ContactBook {
         });
     }
 
-    sortContacts(contacts) {
+    static sortContacts(contacts) {
         contacts.sort((contact1, contact2) => {
             return (contact1.firstName + contact1.lastName).localeCompare(contact2.firstName + contact2.firstName);
         });
@@ -86,7 +86,7 @@ class ContactBook {
         return result;
     }
 
-    createNoDataItem() {
+    static createNoDataItem() {
         let result = document.createElement('li');
         result.className = 'contact-list-empty';
         result.textContent = NO_CONTACTS_TEXT;
@@ -193,15 +193,15 @@ class ContactBook {
         this.firstNameField.setSelectionRange(0, this.firstNameField.value.length);
     }
 
-    toggleElement(element, isShown) {
+    static toggleElement(element, isShown) {
         element.style.display = isShown ? 'block' : 'none';
     }
 
-    toggleFade(element, isFade) {
+    static toggleFade(element, isFade) {
         element.style.opacity = isFade ? .5 : 1;
     }
 
-    toggleDisabled(element, isDisabled) {
+    static toggleDisabled(element, isDisabled) {
         if(isDisabled) {
             element.setAttribute('disabled', '');
         } else {
